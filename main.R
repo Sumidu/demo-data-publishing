@@ -29,7 +29,16 @@ clean_data <- named_data %>%
   # remove columns that are not needed or do not contain any data
   select(-submitdate, -startlanguage, -studyProgram_other)
 
+# ADD project specific cleaning code ----
+# Factor scores
+# remove timing data if not necessary
 
+
+clean_data %>% write_csv("data/clean_data.csv")
+clean_data %>% write_rds("data/clean_data.rds")
+
+library(feather)
+clean_data %>% write_feather("data/clean_data.feather")
 
 labelled::generate_dictionary(clean_data) %>% write_csv("data/data_dictionary.csv")
 
